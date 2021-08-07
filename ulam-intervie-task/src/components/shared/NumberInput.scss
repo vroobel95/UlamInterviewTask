@@ -1,0 +1,15 @@
+.number-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+
+  .title {
+    flex: 1;
+    text-align: left;
+  }
+
+  input {
+    flex: 1;
+  }
+}
