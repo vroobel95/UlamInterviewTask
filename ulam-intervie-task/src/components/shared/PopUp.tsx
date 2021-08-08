@@ -3,13 +3,14 @@ import './PopUp.scss';
 import React from "react";
 import { createPortal } from "react-dom";
 import Button from "../shared/Button";
-import locationIcon from "@iconify/icons-noto/dumpling";
+import closeIcon from "@iconify/icons-mdi/close";
 
 interface PopUpProps {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
 }
+
 const PopUp: React.FC<PopUpProps> = (props) => {
   const portalContainer = document.getElementById('root');
   
@@ -23,7 +24,7 @@ const PopUp: React.FC<PopUpProps> = (props) => {
               <div className="popup-title">{props.title}</div>
             ) : null}
             <div className="popup-close">
-              <Button className="close-button" icon={locationIcon} />
+              <Button className="close" icon={closeIcon} onClick={props.onClose} variant="close"/>
             </div>
             <div className="popup-children">{props.children}</div>
           </div>
