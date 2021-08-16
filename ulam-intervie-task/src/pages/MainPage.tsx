@@ -44,6 +44,7 @@ const MainPage: React.FC = () => {
       <Dropzone onDrop={handleDropFile} />
       <Map
         locations={locations}
+        onLocationsLoaded={() => setIsOpenPopup(false)}
       />
       <PopUp isOpen={isOpenPopup} onClose={() => setIsOpenPopup(false)}>
         <ChooseColumnForm onSubmit={handleGetColumns} />
