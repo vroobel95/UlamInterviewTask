@@ -10,7 +10,7 @@ enum Category {
 
 namespace Category {
     export const getCategory = (categoryName: string): Category => {
-        switch (categoryName) {
+        switch (categoryName.toLowerCase()) {
             case 'home':
                 return Category.Home
             case 'work':

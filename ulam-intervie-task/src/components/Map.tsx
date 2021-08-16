@@ -15,6 +15,18 @@ interface MapProps {
 const Map: React.FC<MapProps> = (props) => {
   const [locations, setLocations] = useState<LocationPinModel[]>();
 
+  const getFullAddress = (location: LocationPinModel) => {
+    return (
+      location.address +
+      ", " +
+      location.zipCode +
+      ", " +
+      location.city +
+      ", " +
+      location.state
+    );
+  };
+
   useEffect(() => {
     const getLocations = async () => {
       if (props.locations.length > 0) {
@@ -27,15 +39,17 @@ const Map: React.FC<MapProps> = (props) => {
           };
 
           await axios
-            .get(`http://api.positionstack.com/v1/forward?access_key=${params.access_key}&query=${params.query}`)
+            .get(
+              `http://api.positionstack.com/v1/forward?access_key=${params.access_key}&query=${params.query}`
+            )
             .then(({ data }) => {
-                const coordinates = (data.data as CoordinatesModel[]);
-                tempLocations.push({
-                    ...location,
-                    latitude: coordinates[0].latitude,
-                    longitude: coordinates[0].longitude
-                });
-              })
+              const coordinates = data.data as CoordinatesModel[];
+              tempLocations.push({
+                ...location,
+                latitude: coordinates[0].latitude,
+                longitude: coordinates[0].longitude,
+              });
+            })
             .catch((error) => {
               console.log(error);
             });
@@ -52,7 +66,7 @@ const Map: React.FC<MapProps> = (props) => {
     <div className="map">
       <GoogleMapReact
         defaultCenter={{ lat: 51.1197607, lng: 17.0098888 }}
-        defaultZoom={15}
+        defaultZoom={5}
         bootstrapURLKeys={{ key: "AIzaSyBZLDVwtsw8LPXxHVhSXRlFhmDe0SdmeRM" }}
       >
         {locations
@@ -61,6 +75,8 @@ const Map: React.FC<MapProps> = (props) => {
                 key={index}
                 lat={location.latitude!}
                 lng={location.longitude!}
+                color={location.color}
+                text={getFullAddress(location)}
               />
             ))
           : null}
