@@ -34,7 +34,7 @@ const Map: React.FC<MapProps> = (props) => {
 
         for (const location of props.locations) {
           const params = {
-            access_key: "42906e4315e1d6c51cdf5d6f25cd76a0",
+            access_key: process.env.REACT_APP_PositionStackKey,
             query: location.address + ", " + location.city,
           };
 
@@ -67,7 +67,7 @@ const Map: React.FC<MapProps> = (props) => {
       <GoogleMapReact
         defaultCenter={{ lat: 51.1197607, lng: 17.0098888 }}
         defaultZoom={5}
-        bootstrapURLKeys={{ key: "AIzaSyBZLDVwtsw8LPXxHVhSXRlFhmDe0SdmeRM" }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GoogleMapsApiKey! }}
       >
         {locations
           ? locations.map((location, index) => (
