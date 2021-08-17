@@ -1,1 +1,4 @@
 ulam-intervie-task/.env
+
+# Local Netlify folder
+.netlify
