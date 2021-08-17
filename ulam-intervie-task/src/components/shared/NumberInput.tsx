@@ -1,30 +1,32 @@
 import "./NumberInput.scss";
 
-import React, { ChangeEvent } from "react";
+import React from "react";
 import classNames from "classnames";
-import MaterialInput from '@material-ui/core/Input';
-import MaterialLabel from '@material-ui/core/InputLabel';
+import { Field } from "formik";
 
 interface NumberInputProps {
+  for: string;
   className: string;
   text: string;
-  value: number;
-  minValue?: number;
-  onValueChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
+  touched?: boolean;
 }
 
 const NumberInput: React.FC<NumberInputProps> = (props) => {
-  const inputClassName = classNames("input", props.className);
+  const inputClassName = classNames("number-input", props.className, {
+    "not-valid": props.touched && props.error,
+  });
   return (
-    <div className="number-input">
-      <MaterialLabel className="title">{props.text}</MaterialLabel>
-      <MaterialInput
-        className={inputClassName}
-        type="number"
-        value={props.value}
-        onChange={props.onValueChange}
-        defaultValue={props.minValue}
-      />
+    <div className={inputClassName}>
+      <div className="label-and-value">
+        <label htmlFor={props.for}>{props.text}</label>
+        <Field name={props.for} type="number" />
+      </div>
+      {props.error && props.touched ? (
+        <div className="error">{props.error}</div>
+      ) : (
+        <div className="error" />
+      )}
     </div>
   );
 };

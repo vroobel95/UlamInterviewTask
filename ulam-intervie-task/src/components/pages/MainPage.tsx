@@ -1,14 +1,14 @@
 import "./MainPage.scss";
 
 import React, { useState } from "react";
-import Dropzone from "../components/shared/Dropzone";
-import Map from "../components/Map";
-import PopUp from "../components/shared/PopUp";
-import ChooseColumnForm from "../components/forms/ChooseColumnForm";
-import ChooseColumnFormModel from "../models/ChooseColumnFormModel";
+import Dropzone from "../shared/Dropzone";
+import Map from "../Map";
+import PopUp from "../shared/PopUp";
+import ChooseColumnForm from "../forms/ChooseColumnForm";
+import ChooseColumnFormModel from "../../models/ChooseColumnFormModel";
 import { parse } from "papaparse";
-import LocationPinModel from "../models/LocationPinModel";
-import LocationPinHelper from "../helpers/LocationPinHelper";
+import LocationPinModel from "../../models/LocationPinModel";
+import LocationPinHelper from "../../helpers/LocationPinHelper";
 
 const MainPage: React.FC = () => {
   const [isOpenPopup, setIsOpenPopup] = useState<boolean>(false);

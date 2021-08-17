@@ -1,5 +1,6 @@
-import './App.css';
-import MainPage from './pages/MainPage';
+import './App.scss';
+import MainPage from './components/pages/MainPage';
+require('dotenv').config()
 
 function App() {
   return (
