@@ -11,16 +11,18 @@ class LocationPinHelper {
     let locations = [] as LocationPinModel[];
 
     for (let record of data) {
-      locations.push({
-        address: record[columns.address - 1],
-        category: Category.getCategory(record[columns.category - 1]),
-        city: record[columns.city - 1],
-        color: Category.getColor(
-          Category.getCategory(record[columns.category - 1])
-        ),
-        state: record[columns.state - 1],
-        zipCode: record[columns.zipCode - 1],
-      });
+      if (record.length > 1) {
+        locations.push({
+          address: record[columns.address - 1],
+          category: Category.getCategory(record[columns.category - 1]),
+          city: record[columns.city - 1],
+          color: Category.getColor(
+            Category.getCategory(record[columns.category - 1])
+          ),
+          state: record[columns.state - 1],
+          zipCode: record[columns.zipCode - 1],
+        });
+      }
     }
 
     return locations;
